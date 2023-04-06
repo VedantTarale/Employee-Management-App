@@ -1,0 +1,23 @@
+version: '3'
+services:
+  sql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=12345678
+    volumes:
+      - sql-db:/var/lib/mysql
+  Rails:
+    image: emp_mgmt
+    depends_on:
+      - sql
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - sql
+      - Rails
+volumes:
+  sql-db:
