@@ -6,15 +6,9 @@ services:
       - MYSQL_ROOT_PASSWORD=12345678
     volumes:
       - sql-db:/var/lib/mysql
-  Rails1:
-    image: emp_mgmt
-    depends_on:
-      - sql
-  Rails2:
-    image: emp_mgmt
-    depends_on:
-      - sql
-  Rails3:
+      - ./backup-job.sh:/backup-job.sh
+      - ./cronjob:/etc/cron.d/cronjob
+  Rails:
     image: emp_mgmt
     depends_on:
       - sql
@@ -26,8 +20,6 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - sql
-      - Rails1
-      - Rails2
-      - Rails3
+      - Rails
 volumes:
   sql-db:
