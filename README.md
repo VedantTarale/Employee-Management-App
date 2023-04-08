@@ -3,7 +3,7 @@
 - Create Dockerfile in the src directory which is used to generate an image of the Rails App (with Base layer of Ruby 3.0.5 and all required dependencies) which listens on port `3000` <br>
 ![image](https://user-images.githubusercontent.com/95867745/230729517-7490ee0c-c2dc-4908-b138-96aa75cf4be3.png)
 - To generate the image run the following command in the src directory: `docker build -t emp_mgmt .`
-## Task-2: Launch the application in a docker conatainer. Launch a separate container for the databse and ensure that the wo containers are able to cennect.
+## Task-2: Launch the application in a docker conatainer. Launch a separate container for the databse and ensure that the wo containers are able to cennect
 - First and foremost create a network within docker network within which the required containers will run. To do so run: `doceker network create <network_name>`
 - Run the mysql continer: `docker run --name <container_name> -d --net <network_name> -e MYSQL_ROOT_PASSWORD=<passowrd> mysql:latest`
 - Mysql runs on the specified network on the port `3306`
